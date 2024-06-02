@@ -53,11 +53,6 @@ io.on("connection", (socket) => {
         text: data.text,
       });
     });
-
-    socket.on("disconnect", () => {
-      rooms[roomName] = rooms[roomName].filter((user) => user !== name);
-      socket.broadcast.to(roomName).emit("user:left", { name: name });
-    });
   });
 });
 

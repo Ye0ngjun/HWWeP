@@ -64,10 +64,6 @@ function App() {
       setUsers((prevUsers) => [...prevUsers, data.name]);
     });
 
-    socket.on("user:left", (data) => {
-      setUsers((prevUsers) => prevUsers.filter((user) => user !== data.name));
-    });
-
     socket.on("send:message", (data) => {
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -78,7 +74,6 @@ function App() {
     return () => {
       socket.off("init");
       socket.off("user:join");
-      socket.off("user:left");
       socket.off("send:message");
     };
   }, []);
